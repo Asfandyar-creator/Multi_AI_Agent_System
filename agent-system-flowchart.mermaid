@@ -1,0 +1,54 @@
+flowchart TD
+    subgraph Business[Business Entity]
+        B1[Problem Statement]
+        B2[Evaluate Solution]
+        B3[Grade Based on Results]
+    end
+
+    subgraph Student[Student Agent]
+        S1[Receive Problem]
+        S2[Convert to Analytical Problem]
+        S3[Attempt Solution]
+        S4[Implement Solution]
+        S5[Final Solution]
+        S6[Validation Decision]
+    end
+
+    subgraph Teacher[Teacher Agent]
+        T1[Knowledge Base]
+        T2[Track Questions]
+        T3[Provide Broad Guidance]
+        T4[Grade Student]
+        T5[Validate Solution]
+    end
+
+    subgraph TA[Teaching Assistant Agent]
+        TA1[Specific Task Knowledge]
+        TA2[Track Progress]
+        TA3[Task-Specific Guidance]
+        TA4[Grade Student]
+    end
+
+    B1 -->|Provides| S1
+    S1 -->|Analyzes| S2
+    S2 -->|Attempts| S3
+    
+    S3 -->|If stuck| T3
+    T3 -->|Broad guidance| S3
+    
+    S3 -->|Task help needed| TA3
+    TA3 -->|Specific guidance| S3
+    
+    S3 -->|Complete| S4
+    S4 -->|Finalize| S5
+    S5 -->|Request validation| S6
+    
+    S6 -->|Validation needed| T5
+    T5 -->|Feedback| S5
+    
+    S6 -->|Skip validation| B2
+    S5 -->|Submit| B2
+    
+    B2 -->|Results| B3
+    T2 -->|Question quality| T4
+    TA2 -->|Progress tracking| TA4
